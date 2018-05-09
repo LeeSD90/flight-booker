@@ -1,0 +1,20 @@
+<form class="form-horizontal">
+	<%= form_tag(flights_path, method: :get) do %>
+		<% @flights.each do |f| %>
+			<div class="form-group row-md-4">
+				<div class="row">
+					<div class="col-sm-4">
+					<h3><%= f.from_airport.IATA %> to <%= f.to_airport.IATA %></h3>
+					<h4>Departure: <%= f.start %></h4>
+					<h4>Duration: <%= f.duration; pluralize(f.duration, 'hour') %></h4>
+					<%= radio_button_tag(:flight_id, f.id, class: 'radio') %>
+					</div>
+				</div>
+			</div>
+			
+ 		<% end %>
+
+ 		<%= hidden_field_tag(:passengers, params[:passengers]) %>
+		<%= submit_tag('Book flight', class: 'btn btn-primary btn-block') %>
+	<% end %>
+</form>
