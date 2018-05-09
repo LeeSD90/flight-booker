@@ -1,26 +1,25 @@
-<form class="form-horizontal">
-	<%= form_tag(flights_path, method: :get) do %>
+<%= form_tag(flights_path, method: :get) do %>
+
+	<div class="form-group row-md-4">
+	<%= label_tag(:from_airport, 'Departure Airport:') %>
+	<%= select_tag(:from_airport, options_for_select(@airports), class: 'form-control') %>
+	</div>
+
+	<div class="form-group row-sm-4">
+	<%= label_tag(:to_airport, 'Destination Airport:') %>
+	<%= select_tag(:to_airport, options_for_select(@airports), class: 'form-control') %>
+	</div>
+
+		<div class="form-group">
+	<%= label_tag(:passengers, 'Number of passengers:') %>
+	<%= select_tag(:passengers, options_for_select([1,2,3,4]), class: 'form-control') %>
+	</div>
 
 		<div class="form-group row-md-4">
-		<%= label_tag(:from_airport, 'Departure Airport:') %>
-		<%= select_tag(:from_airport, options_for_select(@airports), class: 'form-control') %>
+	<%= label_tag(:date, 'Departure date:') %>
+	<%= select_tag(:date, options_for_select(@dates), class: 'form-control') %>
 		</div>
 
-		<div class="form-group row-sm-4">
-		<%= label_tag(:to_airport, 'Destination Airport:') %>
-		<%= select_tag(:to_airport, options_for_select(@airports), class: 'form-control') %>
-		</div>
+	<%= submit_tag('Search', class: 'btn btn-primary btn-block') %>
+<% end %>
 
- 		<div class="form-group">
-		<%= label_tag(:passengers, 'Number of passengers:') %>
-		<%= select_tag(:passengers, options_for_select([1,2,3,4]), class: 'form-control') %>
-		</div>
-
- 		<div class="form-group row-md-4">
-		<%= label_tag(:date, 'Departure date:') %>
-		<%= select_tag(:date, options_for_select(@dates), class: 'form-control') %>
- 		</div>
-
-		<%= submit_tag('Search', class: 'btn btn-primary btn-block') %>
-	<% end %>
-</form>

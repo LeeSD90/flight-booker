@@ -1,0 +1,15 @@
+<h2>Booking details</h2>
+<%= form_for @booking do |f| %>
+<%= f.hidden_field(:flight_id, value: @booking.flight_id) %>
+		Departs from: <%= @booking.flight.from_airport.IATA %></br>
+		Arrives at: <%= @booking.flight.to_airport.IATA %></br>
+		Departure time: <%= @booking.flight.start %></br>
+	<hr />
+	<h2>Passenger details:</h2>
+	<%= f.fields_for :passengers do |passenger_attributes| %>
+		Name: <%= passenger_attributes.text_field :name %>
+		Email: <%= passenger_attributes.text_field :email %>
+		<hr />
+	<% end %>
+	<%= f.submit class: 'btn btn-primary btn-sm' %>
+<% end %>

@@ -1,0 +1,12 @@
+<h1>Flight details</h1>
+<hr/>
+From: <%= @booking.flight.from_airport.IATA %></br>
+To: <%= @booking.flight.to_airport.IATA %></br>
+Date: <%= @booking.flight.start %></br>
+<hr/>
+<h3>Passengers: </h3>
+<% @booking.passengers.each do |p| %>
+	<%= p.name %></br>
+	<%= p.email %></br>
+	<hr/>
+<% end %>
