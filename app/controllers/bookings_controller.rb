@@ -18,11 +18,14 @@ class BookingsController < ApplicationController
   		end
   	end
 
-  	if @booking.save
+	  if @booking.save
+		@booking.passengers.each do |p|
+			PassengerMailer.with(user: p).confirmation_email.deliver_later
+		end
   		flash[:success] = "Booking successfully created"
   		redirect_to @booking
   	else
-  		flash[:error].now = "Error! #{@booking.errors.messages}"
+  		flash.now[:error] = "Error! #{@booking.errors.full_messages}"
   		render 'new'
   	end
   end
